@@ -9,5 +9,21 @@ categoryRouter.post(
   "/category",
   controller.addCategoryController.bind(controller)
 );
+categoryRouter.get(
+  "/categories",
+  controller.getAllCategoriesController.bind(controller)
+);
+categoryRouter.get(
+  "/category/:id",
+  controller.getCategoryByIdController.bind(controller)
+);
+categoryRouter.put(
+  "/category/:id",
+  controller.updateCategoryController.bind(controller)
+);
+categoryRouter.delete(
+  "/category/:id",
+  controller.deleteCategoryController.bind(controller)
+);
 
 export default categoryRouter;

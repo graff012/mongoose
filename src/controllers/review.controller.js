@@ -26,6 +26,46 @@ class ReviewController {
       next(err);
     }
   }
+
+  async getReviewByIdController(req, res, next) {
+    const { id } = req.params;
+    try {
+      const review = await this.reviewService.getReviewById(id);
+      if (!review) {
+        return res.status(404).json({ message: "Review not found" });
+      }
+      res.status(200).json(review);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async updateReviewController(req, res, next) {
+    const { id } = req.params;
+    const body = req.body;
+    try {
+      const updatedReview = await this.reviewService.updateReview(id, body);
+      if (!updatedReview) {
+        return res.status(404).json({ message: "Review not found" });
+      }
+      res.status(200).json(updatedReview);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async deleteReviewController(req, res, next) {
+    const { id } = req.params;
+    try {
+      const deletedReview = await this.reviewService.deleteReview(id);
+      if (!deletedReview) {
+        return res.status(404).json({ message: "Review not found" });
+      }
+      res.status(200).json({ message: "Review deleted successfully" });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default ReviewController;
